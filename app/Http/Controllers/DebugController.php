@@ -23,19 +23,41 @@ class DebugController extends Controller
         $clubs = json_decode($json, true);
 
         $collection = collect($clubs);
-        $clubs = $collection->unique();
-
         $unique = $collection->unique('logo');
-        $unique->values()->all();
+        $clubs = $unique->values()->all();
 
-        $formatted = [];
+        $leagues = $this->getLeagues($clubs, false);
+        dd($leagues);
 
-        foreach ($unique as $club) {
-            $k = $club['league'];
-            $formatted[$k][] = $club;
+
+    }
+
+    /**
+     * @param $clubs
+     * @return array $formattedLeagues
+     * @example "English Premier League" => array:1 [0 => "England"]
+     */
+    private function getLeagues($clubs, $default_format = true) {
+        $formattedLeagues = [];
+        if ($default_format) {
+            foreach ($clubs as $club) {
+                $k = $club['league'];
+                $formattedLeagues[$k] = [
+                    $club['country']
+                ];
+            }
+        } else {
+            asort($clubs);
+            foreach ($clubs as $club) {
+                $k = $club['country'];
+                $formattedLeagues[$k][] = [
+                    $club['name']
+                ];
+            }
         }
 
-        dd($formatted);
+        dd($formattedLeagues);
+        return $formattedLeagues;
     }
 
     /**
