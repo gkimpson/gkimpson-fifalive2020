@@ -17,7 +17,8 @@ class CreateLeaguesTable extends Migration
             $table->id();
             $table->string('name');
             $table->enum('confederation', ['AFC', 'CAF', 'CONCACAF', 'CONMEBOL', 'OFC', 'UEFA']);
-            $table->json('properties');
+            $table->string('country');
+            $table->json('properties')->nullable();
             $table->timestamps();
         });
     }

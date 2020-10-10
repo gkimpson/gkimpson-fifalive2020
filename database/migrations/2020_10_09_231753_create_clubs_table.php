@@ -16,10 +16,10 @@ class CreateClubsTable extends Migration
         Schema::create('clubs', function (Blueprint $table) {
             $table->id();
             $table->integer('league_id')->nullable()->unsigned();
-            $table->integer('country_id')->nullable()->unsigned();
             $table->string('name');
             $table->integer('defence')->unsigned();
             $table->integer('midfield')->unsigned();
+            $table->integer('attack')->unsigned();
             $table->integer('overall')->unsigned();
             $table->string('logo')->nullable();
             $table->string('alt_logos')->nullable();

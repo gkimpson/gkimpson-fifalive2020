@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\League;
 use Illuminate\Http\Request;
 
 class LeagueController extends Controller
@@ -34,7 +35,7 @@ class LeagueController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
